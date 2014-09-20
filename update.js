@@ -27,6 +27,10 @@ var config = require("./config.js");
   calling `update()` if necessary and exiting if not.
  */
 function check() {
+	var now = new Date();
+	console.log("[%s%s%s %s:%s] Starting update...",
+		now.getFullYear(), (now.getMonth() + 1), now.getDate(),
+		now.getHours(), now.getMinutes());
 
 	var ipCheck  = "http://api.ipify.org?format=json";
 	var dnsCheck = "https://api.dreamhost.com/?cmd=dns-list_records&format=json&key=" + config.key;
@@ -54,7 +58,7 @@ function check() {
 
 		// compare IP addresses
 		var record = record.value;
-		if(ip === record) console.log("IPs match, exiting.");
+		if(ip === record) console.log("> IPs match, exiting.");
 		else update(ip, record);
 	}
 	function handleFailures(errors) {
