@@ -37,13 +37,19 @@ function check() {
 
 	function handleResponses(responses) {
 		// parse API responses
-		var ip  = JSON.parse(responses[0]).ip;
-		var dns = JSON.parse(responses[1]).data;
+		var ip  = responses[0].ip;
+		var dns = responses[1].data;
 
 		// find DNS record
 		var record = "";
 		for(var entry in dns) {
 			if(dns[entry].record === config.hostname) { record = dns[entry]; }
+		}
+
+		// check for missing DNS reocrd
+		if(record === "") {
+			console.error("Error: DNS record for %s not found", config.hostname);
+			return;
 		}
 
 		// compare IP addresses
@@ -52,7 +58,8 @@ function check() {
 		else update(ip, record);
 	}
 	function handleFailures(errors) {
-		console.error("IP address check failed: ", errors);
+		console.error("Error: IP address check failed:")
+		console.error(errors);
 	}
 }
 
@@ -89,7 +96,8 @@ function update(oldIp, newIp) {
 		// console.log(responses);
 	}
 	function handleFailures(errors) {
-		console.error("Failed to update DNS record: ", errors);
+		console.error("Error: Failed to update DNS record:");
+		console.error(errors);
 	}
 }
 
@@ -104,9 +112,16 @@ function request(url) {
 	return new RSVP.Promise(function(resolve, reject) {
 		var options = { "url": url };
 		curl.request(options, function(err, stdout, meta) {
-			// check for Curl errors
-			if(err) reject(err);
-			else resolve(stdout);
+
+			// check for curl errors
+			if(err) reject({ "error": err, "url": url });
+			else {
+				var response = JSON.parse(stdout);
+
+				// check for DH API errors
+				if(response.result === "error") reject({ "error": response, "url": url });
+				else resolve(response);
+			}
 		});
 	});
 }
