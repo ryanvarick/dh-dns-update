@@ -51,6 +51,6 @@ Then load the plist file
 
 A verify it works by running
 
-    launchctl start com.example.dh-dns-update`
+    launchctl start com.example.dh-dns-update
 
 Finally, check out `status.log` to make sure everything is working properly.
