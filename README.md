@@ -23,7 +23,7 @@ To run immediately
 
 ## LaunchAgent usage (OSX)
 
-To run automatically, create a launch agent, e.g. `~/Library/LaunchAgents/com.example.dh-dns-update`
+To run automatically, create a launch agent, e.g. `~/Library/LaunchAgents/com.example.dh-dns-update.plist`
 
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -45,6 +45,12 @@ To run automatically, create a launch agent, e.g. `~/Library/LaunchAgents/com.ex
       </dict>
     </plist>
 
-Then either reboot or `launchctl load ~/Library/LaunchAgents/com.example.dh-dns-update`.
+Then load the plist file
 
-Verify it works by running `launchctl start com.example.dh-dns-update`, then check out `status.log`.
+    launchctl load ~/Library/LaunchAgents/com.example.dh-dns-update.plist
+
+A verify it works by running
+
+    launchctl start com.example.dh-dns-update`
+
+Finally, check out `status.log` to make sure everything is working properly.
