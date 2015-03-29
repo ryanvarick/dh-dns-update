@@ -1,6 +1,11 @@
 {
   "name": "dh-dns-update",
   "description": "Update a Dreamhost DNS A record",
+  "author": "Ryan Varick <github@ryanvarick.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanvarick/dh-dns-update"
+  },
   "version": "2.0.0",
   "dependencies": {
     "curlrequest": "^0.5.1",
