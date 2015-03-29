@@ -4,19 +4,19 @@ A simple Node script I put together to automatically update the DNS A record for
 
 ## Usage
 
-Install dependencies:
+Install dependencies
 
     npm install
 
-Specify the record to update and Dreamhost API key in `config.js`:
+Specify the record to update and Dreamhost API key in `config.js`
 
     module.exports = {
     	hostname: "example.domain.com",
     	key: "DREAMHOST API KEY"
     };
 
-To run immediately:
+To run immediately
 
-    `$ node update.js`
+    $ node update.js
 
-To run automatically, create a launch agent in `~/Library/LaunchAgents`.
+To run automatically, create a launch agent in `~/Library/LaunchAgents`
