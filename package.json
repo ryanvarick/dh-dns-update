@@ -1,8 +1,7 @@
 {
   "name": "dh-dns-update",
   "description": "Update a Dreamhost DNS A record",
-  "version": "0.0.1",
-  "private": true,
+  "version": "2.0.0",
   "dependencies": {
     "curlrequest": "^0.5.1",
     "rsvp": "^3.0.13"
