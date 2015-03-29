@@ -49,7 +49,7 @@ Then load the plist file
 
     launchctl load ~/Library/LaunchAgents/com.example.dh-dns-update.plist
 
-A verify it works by running
+Verify it works by running
 
     launchctl start com.example.dh-dns-update
 
